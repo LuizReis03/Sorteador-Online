@@ -32,8 +32,11 @@ public class SorteioController {
 
         try
         {
+            Integer isOrder = list.getIsOrdem() != null ? list.getIsOrdem() : 1;
+            String quantidadeSortear = StringUtils.isNotBlank(list.getQuantidadeSortear()) ? list.getQuantidadeSortear() : "1";
+
             List<String> listSorteio = iDadosSorteio.separadorDeParametros(list.getDadosList());
-            response.setData(iDadosSorteio.sorteador(listSorteio, list.getQuantidadeSortear(), list.getIsOrdem()));
+            response.setData(iDadosSorteio.sorteador(listSorteio, quantidadeSortear, isOrder));
             response.setStatusCode(HttpStatus.OK.value());
             return response;
         }
